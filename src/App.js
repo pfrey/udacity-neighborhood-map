@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios'
-import Sidebar from './components/Sidebar'
+import axios from 'axios';
+import Sidebar from './components/Sidebar';
 import Header from './components/Header';
+import MapContainer from './components/MapContainer';
 
 class App extends Component {
   state = {
@@ -72,12 +73,12 @@ class App extends Component {
 
   render() {
     return (
-      <main>
+      <div class="container">>
         <Sidebar 
           {...this.state}
         />
-        <div id="map"></div>
-      </main>
+        <MapContainer />
+      </div>
     )
   }
 }
