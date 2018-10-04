@@ -56,31 +56,7 @@ class App extends Component {
       var marker = new window.google.maps.Marker({
         position: {lat: v.venue.location.lat, lng: v.venue.location.lng},
         map: map,
-        title: v.venue.name,
-        animation: window.google.maps.Animation.DROP
-      })
-
-      // Listen for a click on a marker
-      // Set content based on each marker
-      // Display content in an info window
-      marker.addListener('click', function() {
-        infoWindow.setContent(venueName)
-        infoWindow.open(map, marker)
-      })
-    })
-
-    var venueList = new window.document.createElement("ul")
-
-    // Parse through results
-    this.state.venues.map(v => {
-      var venueName = `<p>${v.venue.name}</p> <p>${v.venue.location.address}</p>`
-
-      // Create marker for each result
-      var listItem = new window.google.maps.Marker({
-        position: {lat: v.venue.location.lat, lng: v.venue.location.lng},
-        map: map,
-        title: v.venue.name,
-        animation: window.google.maps.Animation.DROP
+        title: v.venue.name
       })
 
       // Listen for a click on a marker
@@ -98,17 +74,9 @@ class App extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="sidebar">
-          <h1>Neighborhood Map</h1>
-          <div id="list">
-            <input id="show-listings" type="button" value="Show Listings" />
-            <input id="hide-listings" type="button" value="Hide Listings" />
-          </div>
-        </div>
-
+      <main>
         <div id="map"></div>
-      </div>
+      </main>
     )
   }
 }
