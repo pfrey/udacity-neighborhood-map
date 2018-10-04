@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
+import Sidebar from './components/Sidebar'
+import Header from './components/Header';
 
 class App extends Component {
-
   state = {
     venues: []
   }
@@ -23,7 +24,7 @@ class App extends Component {
       client_id: "ORMEUFMFTJIPPYRESL0CA30M1X0QNGU1NRZ03NKD311S4QDH",
       client_secret: "RN4OH1PHIAZAMH52FHZ5I4LGA5VULXXGQ304C00ALCZXCKNK",
       v: "20181003",
-      query: "shopping",
+      query: "sights",
       near: "Detroit, MI"
     }
 
@@ -67,14 +68,14 @@ class App extends Component {
         infoWindow.open(map, marker)
       })
     })
-
-
   }
-
 
   render() {
     return (
       <main>
+        <Sidebar 
+          {...this.state}
+        />
         <div id="map"></div>
       </main>
     )
