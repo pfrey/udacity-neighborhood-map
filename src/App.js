@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Sidebar from './components/Sidebar';
-import Header from './components/Header';
 import MapContainer from './components/MapContainer';
 
 class App extends Component {
