@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Locations from './Locations';
+import Dropdown from './Dropdown';
 
 class Sidebar extends Component {
   state = { query: '' }
@@ -9,8 +10,11 @@ class Sidebar extends Component {
       <div className='sidebar'>
         <h1>Neighborhood Sights</h1>
         <div class='search'>
-          <input placeholder='Search List' type={'search'} id={'search'} value={this.state.query}></input>
+          <Dropdown 
+            {...this.props}
+          />
         </div>
+
         <Locations 
           {...this.props}
         />
