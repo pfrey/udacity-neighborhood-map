@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Locations from './Locations'
+import Locations from './Locations';
 
 class Sidebar extends Component {
   state = { query: '' }
