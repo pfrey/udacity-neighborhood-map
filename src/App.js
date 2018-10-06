@@ -57,7 +57,8 @@ class App extends Component {
       var marker = new window.google.maps.Marker({
         position: {lat: v.venue.location.lat, lng: v.venue.location.lng},
         map: map,
-        title: v.venue.name
+        title: v.venue.name,
+        id: v.id
       })
 
       // Listen for a click on a marker
@@ -72,7 +73,7 @@ class App extends Component {
 
   render() {
     return (
-      <div class="container">>
+      <div class="container">
         <Sidebar 
           {...this.state}
         />

@@ -8,7 +8,8 @@ class ListItem extends Component {
     var newmarker = new window.google.maps.Marker({
       position: {lat: venue.location.lat, lng: venue.location.lng},
       map: map,
-      title: venue.name
+      title: venue.name,
+      id: venue.id
     })
 
     newmarker.addListener('click', function() {
