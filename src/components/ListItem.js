@@ -3,20 +3,19 @@ import React, { Component } from 'react';
 class ListItem extends Component {
 
   itemClick = (venue) => { 
-    var map = document.getElementById('map')
     var infoWindow = new window.google.maps.InfoWindow()
     var newmarker = new window.google.maps.Marker({
       position: {lat: venue.location.lat, lng: venue.location.lng},
-      map: map,
+      map: venue.map,
       title: venue.name,
       id: venue.id
     })
 
     newmarker.addListener('click', function() {
       infoWindow.setContent(venue.name)
-      infoWindow.open(map, newmarker)
+      infoWindow.open(venue.map, newmarker)
     })
-    console.log(venue)
+    console.log(newmarker)
   }
 
   render() {

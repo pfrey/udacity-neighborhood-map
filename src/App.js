@@ -58,8 +58,9 @@ class App extends Component {
         position: {lat: v.venue.location.lat, lng: v.venue.location.lng},
         map: map,
         title: v.venue.name,
-        id: v.id
+        id: v.venue.id
       })
+      //console.log(marker)
 
       // Listen for a click on a marker
       // Set content based on each marker
@@ -67,6 +68,7 @@ class App extends Component {
       marker.addListener('click', function() {
         infoWindow.setContent(venueName)
         infoWindow.open(map, marker)
+        console.log(marker)
       })
     })
   }
