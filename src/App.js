@@ -13,11 +13,6 @@ class App extends Component {
     this.getVenues()
   }
 
-  renderMap = () => {
-    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBNiVrOQqLRb6SuJgjBRM_bQV2hYAs-hRw&callback=initMap")
-    window.initMap = this.initMap
-  }
-
   getVenues = () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?"
     const parameters = {
@@ -39,6 +34,10 @@ class App extends Component {
       })
   }
 
+  renderMap = () => {
+    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBNiVrOQqLRb6SuJgjBRM_bQV2hYAs-hRw&callback=initMap")
+    window.initMap = this.initMap
+  }
 
   initMap = () => {
     // Create a map
@@ -47,30 +46,36 @@ class App extends Component {
       zoom: 11
     })
 
-    var infoWindow = new window.google.maps.InfoWindow()
+    var largeInfoWindow = new window.google.maps.InfoWindow();
+    var bounds = new window.google.maps.LatLngBounds();
+    var markers = [];
 
     // Parse through results
     this.state.venues.map(v => {
-      var venueName = `<p>${v.venue.name}</p> <p>${v.venue.location.address}</p>`
 
       // Create marker for each result
       var marker = new window.google.maps.Marker({
         position: {lat: v.venue.location.lat, lng: v.venue.location.lng},
         map: map,
         title: v.venue.name,
-        id: v.venue.id
+        address: v.venue.location.address,
+        id: v.venue.id,
+        animation: window.google.maps.Animation.DROP
       })
-      //console.log(marker)
+      //console.log("get venue: ", marker)
 
-      // Listen for a click on a marker
-      // Set content based on each marker
-      // Display content in an info window
+      //Push new marker to markers array
+      markers.push(marker);
+
+      //Listen for a click to open the info window
       marker.addListener('click', function() {
-        infoWindow.setContent(venueName)
-        infoWindow.open(map, marker)
-        console.log(marker)
-      })
+        fillInfoWindow(this, largeInfoWindow);
+      });
+
+      //Keep marker within the bounds of the map area
+      bounds.extend(marker.position);
     })
+    map.fitBounds(bounds);
   }
 
   render() {
@@ -82,6 +87,18 @@ class App extends Component {
         <MapContainer />
       </div>
     )
+  }
+}
+
+export const fillInfoWindow = (marker, infowindow) => {
+  console.log("marker: ", marker);
+  if (infowindow.marker != marker) {
+    infowindow.marker = marker;
+    infowindow.setContent('<div>' + marker.title + '</div><div>' + marker.address + '</div>');
+    infowindow.open(marker.map, marker);
+    infowindow.addListener('closeclick', function() {
+      infowindow.marker = null;
+    });
   }
 }
 
