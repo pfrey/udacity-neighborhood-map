@@ -23,7 +23,7 @@ class ListItem extends Component {
   }
 
   render() {
-  console.log("props: ", this.props)
+  //console.log("props: ", this.props)
     return (
       <li className='venue-item' onClick={() => this.itemClick(this.props.venue)}>
         {this.props.venue.name}

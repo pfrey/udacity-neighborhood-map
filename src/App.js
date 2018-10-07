@@ -74,6 +74,8 @@ class App extends Component {
 
       //Keep marker within the bounds of the map area
       bounds.extend(marker.position);
+
+      return (console.log("bounds: ", bounds))
     })
     map.fitBounds(bounds);
   }
@@ -92,7 +94,7 @@ class App extends Component {
 
 export const fillInfoWindow = (marker, infowindow) => {
   console.log("marker: ", marker);
-  if (infowindow.marker != marker) {
+  if (infowindow.marker !== marker) {
     infowindow.marker = marker;
     infowindow.setContent('<div>' + marker.title + '</div><div>' + marker.address + '</div>');
     infowindow.open(marker.map, marker);
