@@ -1,4 +1,4 @@
-Demo: [Neighborhood Map] (https://pfrey.github.io/neighborhood-map-project/)
+Demo: [Neighborhood Map](https://pfrey.github.io/neighborhood-map-project/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
